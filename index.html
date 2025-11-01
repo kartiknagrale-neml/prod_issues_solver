@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="login-screen" class="login-container">
+        <h2>Access SQL Query Generator</h2>
+        <input type="password" id="password-input" placeholder="Enter password" onkeydown="if(event.keyCode===13) document.getElementById('login-button').click();">
+        <button id="login-button" onclick="checkPassword()">Login</button>
+        <p id="login-message" class="error-message"></p>
+    </div>
+
+    <!-- Main Application Content (initially hidden) -->
+    <div class="container" id="app-container" style="display:none;">
+        <h1>SQL Query Generator</h1>
+
+        <div class="card-container">
+            <div class="card" id="card-update-mobile">
+                <h2>UPDATE MOBILE NUMBER</h2>
+                <p>Click to update a user's mobile number.</p>
+            </div>
+
+            <div class="card" id="card-add-client">
+                <h2>UNIFIED Client Addition</h2>
+                <p>Click to add a new unified client.</p>
+            </div>
+
+            <div class="card" id="card-add-delivery-mode">
+                <h2>UNIFIED- Delivery Mode Addition</h2>
+                <p>Click to add a new delivery mode.</p>
+            </div>
+        </div>
+
+        <div class="form-section" id="form-update-mobile" style="display:none;">
+            <h2>Update Mobile Number</h2>
+            <label for="update-mobile-number">Mobile Number:</label>
+            <input type="text" id="update-mobile-number" placeholder="e.g., 7583902403"><br><br>
+
+            <label for="update-initiator-id">Initiator ID:</label>
+            <input type="text" id="update-initiator-id" placeholder="e.g., U1914482"><br><br>
+
+            <button onclick="generateUpdateMobileQuery()">Generate Query</button>
+            <button onclick="hideForm('form-update-mobile')">Back to Cards</button>
+            <pre id="output-update-mobile" class="query-output"></pre>
+            <button class="copy-button" onclick="copyToClipboard('output-update-mobile')" style="display:none;">Copy to Clipboard</button>
+        </div>
+
+        <div class="form-section" id="form-add-client" style="display:none;">
+            <h2>Add Unified Client</h2>
+            <label for="add-client-name">Client Name:</label>
+            <input type="text" id="add-client-name" placeholder="e.g., BOIPARIGUDA LAMPS"><br><br>
+
+            <button onclick="generateAddClientQuery()">Generate Query</button>
+            <button onclick="hideForm('form-add-client')">Back to Cards</button>
+            <pre id="output-add-client" class="query-output"></pre>
+            <button class="copy-button" onclick="copyToClipboard('output-add-client')" style="display:none;">Copy to Clipboard</button>
+        </div>
+
+        <div class="form-section" id="form-add-delivery-mode" style="display:none;">
+            <h2>Add Unified Delivery Mode</h2>
+            <label for="delivery-mode-code">Delivery Mode (e.g., BUFFERGODOWN):</label>
+            <input type="text" id="delivery-mode-code" placeholder="e.g., BUFFERGODOWN"><br><br>
+
+            <button onclick="generateAddDeliveryModeQuery()">Generate Query</button>
+            <button onclick="hideForm('form-add-delivery-mode')">Back to Cards</button>
+            <pre id="output-add-delivery-mode" class="query-output"></pre>
+            <button class="copy-button" onclick="copyToClipboard('output-add-delivery-mode')" style="display:none;">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
